@@ -70,4 +70,15 @@ public class LibrarySystem {
         return books.toString();
     }
 
+    public void createBook(){
+
+    }
+
+    public void removeBook(){
+
+    }
+    public void borrowBook(){
+
+    }
+
 }
