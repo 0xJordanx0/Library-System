@@ -4,7 +4,7 @@ public class Book {
     private final String bookName;
     private final String author;
     private final LocalDate publicationDate;
-    private final Boolean isBorrowed;
+    private Boolean isBorrowed;
 
     Book(String bookName, String author, LocalDate publicationDate, boolean isBorrowed){
         this.bookName = bookName;
@@ -27,6 +27,10 @@ public class Book {
 
     public boolean getIsBorrowed(){
         return isBorrowed;
+    }
+
+    public void setIsBorrowed(){
+        isBorrowed = true;
     }
 
 }
