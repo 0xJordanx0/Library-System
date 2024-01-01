@@ -1,18 +1,21 @@
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class LibrarySystem {
     private final String librarySystemName;
     private final ArrayList<Student> students;
     private final ArrayList<Employee> employees;
-    private final ArrayList<Book> books;
+    private final HashMap<Integer, Book> books;
 
 
     LibrarySystem(String librarySystemName){
         this.librarySystemName = librarySystemName;
         students = new ArrayList<Student>();
         employees = new ArrayList<Employee>();
-        books = new ArrayList<Book>();
+        books = new HashMap<Integer, Book>();
     }
 
     public String getLibrarySystemName(){
@@ -23,8 +26,8 @@ public class LibrarySystem {
         return students;
     }
 
-    public String getEmployees(){
-        return employees.toString();
+    public ArrayList<Employee> getEmployees(){
+        return employees;
     }
 
     public void addStudent(){
@@ -70,15 +73,24 @@ public class LibrarySystem {
         return books.toString();
     }
 
-    public void createBook(){
-
+    public void createBook(String bookName, String author, LocalDate publicationDate){
+        Book newBook = new Book(bookName,author,publicationDate, false);
+        books.put(0, newBook);
+        System.out.println(newBook.getBookName() + " Book Created Successfully");
     }
 
-    public void removeBook(){
-
+    public void removeBook(String bookName){
+        books.entrySet().removeIf(entry -> entry.getValue().getBookName().equalsIgnoreCase(bookName));
     }
-    public void borrowBook(){
 
+    public void borrowBook(String bookName, Integer userId){
+        books.forEach((key, book) -> {
+            if (book.getBookName().equalsIgnoreCase(bookName)) {
+                book.setIsBorrowed();
+                books.remove(key);
+                books.put(userId, book);
+            }
+        });
     }
 
 }
