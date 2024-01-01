@@ -7,4 +7,8 @@ public class Employee extends User{
         super(firstName, lastName);
         this.employeeId = employeeId;
     }
+
+    public int getEmployeeId(){
+        return employeeId;
+    }
 }
